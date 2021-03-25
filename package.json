@@ -1,6 +1,6 @@
 {
   "name": "jquery-password-validator",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Plugin for live validation of password requirements",
   "keywords": [
     "jquery-plugin",
@@ -31,6 +31,11 @@
       "name": "Matt Sisto",
       "email": "msisto@gmail.com",
       "url": "https://github.com/msisto"
+    },
+    {
+      "name": "Chris Hampton",
+      "email": "hampton1122@gmail.com",
+      "url": "https://github.com/hampton1122"
     }
   ],
   "license": "MIT",

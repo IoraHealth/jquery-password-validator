@@ -5,7 +5,8 @@
   var pluginName = "passwordValidator",
     defaults = {
       length: 12,
-      require: ["length", "lower", "upper", "digit"],
+      matchSelectors: {"matchOther": "Password", "matchThis": "ConfirmPassword"},
+      require: ["length", "lower", "upper", "digit", "match"],
     };
 
   // The actual plugin constructor
@@ -49,6 +50,18 @@
       },
       preface: "Be at least",
     },
+    match: {
+      validate: function (password, id) {
+        if (id === settings.matchSelectors.matchThis) {
+          var confirmPassword = $('#' + _this.settings.matchSelectors.matchOther).val();
+          return password === confirmPassword;
+        }
+      },
+      message: function (settings) {
+        return " " + settings.matchSelectors.matchOther;
+      },
+      preface: "Must Match"
+    }
   };
 
   // Avoid Plugin.prototype conflicts
@@ -118,7 +131,7 @@
       var currentPassword = $(this.element).val();
       var _this = this;
       _.each(this.settings.require, function (requirement) {
-        if (validators[requirement].validate(currentPassword, _this.settings)) {
+        if (validators[requirement].validate(currentPassword, _this.settings,  _this.element.id)) {
           _this.markRuleValid(requirement);
         } else {
           _this.markRuleInvalid(requirement);

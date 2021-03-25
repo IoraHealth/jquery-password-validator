@@ -29,9 +29,11 @@ This plugin is intended to provide a simple, drop in solution for helping users 
 		$(function () {
 			$("#password_input").passwordValidator({
 				// list of qualities to require
-				require: ['length', 'lower', 'upper', 'digit'],
+				require: ['length', 'lower', 'upper', 'digit', 'match'],
 				// minimum length requirement
-				length: 12
+				length: 12,
+				// if using match, what elements are you wanting to match
+				matchSelectors: {'matchOther': 'Password', 'matchThis': 'ConfirmPassword'},
 			});
 		});
 	</script>
